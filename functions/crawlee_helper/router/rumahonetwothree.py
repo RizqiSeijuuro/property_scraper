@@ -32,15 +32,10 @@ async def sitemap_request_handler(
     """This is a fallback route which will handle the www.rumah123.com sitemap URL."""
     context.log.info(f'Navigating to {context.request.url} ...')
 
-    # table_data = get_table(context=context, limit=LAST_5_YEAR)
     if context.request.url == "https://www.rumah123.com/sitemap-v3/sitemap-ldp-jual.xml":
         table_data = get_table(context=context)
         new_sitemap_url = [row["URL"] for row in table_data if "/sitemap-ldp-jual-" in row["URL"]]
         await context.add_requests(new_sitemap_url)
-    # elif "/sitemap-ldp-jual-" in context.request.url:
-    #     table_data = get_table(context=context, limit=LAST_5_YEAR)
-        # new_sitemap_url = [row["URL"] for row in table_data if "sitemap-" in row["URL"]]
-        # await context.add_requests(new_sitemap_url)
     else:
         table_data = get_table(context=context, limit=LAST_WEEK)
         dataset_name = "sitemap_" + DATASET_NAME
