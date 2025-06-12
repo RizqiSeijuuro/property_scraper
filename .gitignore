@@ -1,3 +1,11 @@
 # uv
 uv.lock
 .venv
+
+**.pyc
+
+.env
+
+**.csv
+**.pq
+**.xml
